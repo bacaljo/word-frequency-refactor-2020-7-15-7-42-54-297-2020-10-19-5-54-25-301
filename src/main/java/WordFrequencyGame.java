@@ -12,39 +12,32 @@ public class WordFrequencyGame {
     public final String NEW_LINE = "\n";
 
     public String getResult(String inputStr) {
-        try {
+        String[] words = inputStr.split(REGEX_SPACE);
 
-            String[] words = inputStr.split(REGEX_SPACE);
-
-            List<WordFrequency> wordFrequencyList = new ArrayList<>();
-            for (String word : words) {
-                WordFrequency wordFrequency = new WordFrequency(word, 1);
-                wordFrequencyList.add(wordFrequency);
-            }
-
-            Map<String, List<WordFrequency>> map = getListMap(wordFrequencyList);
-
-            List<WordFrequency> list = new ArrayList<>();
-            for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
-                WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
-                list.add(wordFrequency);
-            }
-            wordFrequencyList = list;
-
-            wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-
-            StringJoiner joiner = new StringJoiner(NEW_LINE);
-            for (WordFrequency wordFrequency : wordFrequencyList) {
-                String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
-                joiner.add(wordFrequencyLine);
-            }
-
-            return joiner.toString();
-        } catch (Exception e) {
-
-
-            return "Calculate Error";
+        List<WordFrequency> wordFrequencyList = new ArrayList<>();
+        for (String word : words) {
+            WordFrequency wordFrequency = new WordFrequency(word, 1);
+            wordFrequencyList.add(wordFrequency);
         }
+
+        Map<String, List<WordFrequency>> map = getListMap(wordFrequencyList);
+
+        List<WordFrequency> list = new ArrayList<>();
+        for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
+            WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
+            list.add(wordFrequency);
+        }
+        wordFrequencyList = list;
+
+        wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+
+        StringJoiner joiner = new StringJoiner(NEW_LINE);
+        for (WordFrequency wordFrequency : wordFrequencyList) {
+            String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
+            joiner.add(wordFrequencyLine);
+        }
+
+        return joiner.toString();
     }
 
 
