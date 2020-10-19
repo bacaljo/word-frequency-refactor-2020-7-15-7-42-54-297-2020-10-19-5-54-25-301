@@ -10,9 +10,8 @@ import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.joining;
 
 public class WordFrequencyGame {
-
-    public final String REGEX_SPACE = "\\s+";
-    public final String NEW_LINE = "\n";
+    private final String REGEX_SPACE = "\\s+";
+    private final String NEW_LINE = "\n";
 
     public String getResult(String sentence) {
         List<WordFrequency> wordFrequencyList = extractWordFrequencies(sentence);
