@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class WordFrequencyGameTest {
 
@@ -49,6 +51,14 @@ public class WordFrequencyGameTest {
         //Given
         String inputPhrase = "the is is";
         String expectResult = "is 2\nthe 1";
+        validate_Input_words_process_to_expected_word(inputPhrase, expectResult);
+    }
+
+    @Test
+    public void should_return_an_error_message_string_when_input_phrase_is_null() {
+        //Given
+        String inputPhrase = null;
+        String expectResult = "Calculate Error";
         validate_Input_words_process_to_expected_word(inputPhrase, expectResult);
     }
 

@@ -25,9 +25,9 @@ public class WordFrequencyGame {
                 .collect(joining(newLine));
     }
 
-    private List<WordFrequency> extractWordFrequencies(String sentence) {
+    private List<WordFrequency> extractWordFrequencies(String phrase) {
         String regexSpace = "\\s+";
-        List<String> wordList = asList(sentence.split(regexSpace));
+        List<String> wordList = asList(phrase.split(regexSpace));
         Set<String> wordSet = new HashSet<>(wordList);
 
         return wordSet.stream()
