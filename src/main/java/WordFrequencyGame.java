@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.frequency;
+import static java.util.Collections.reverseOrder;
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.joining;
 
 public class WordFrequencyGame {
@@ -14,7 +16,7 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         List<WordFrequency> wordFrequencyList = extractWordFrequencies(sentence);
-        wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+        wordFrequencyList.sort(reverseOrder(comparingInt(WordFrequency::getWordCount)));
 
         return buildWordFrequencyLines(wordFrequencyList);
     }
