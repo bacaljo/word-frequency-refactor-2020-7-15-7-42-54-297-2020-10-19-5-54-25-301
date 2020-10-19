@@ -11,8 +11,8 @@ public class WordFrequencyGame {
     public final String REGEX_SPACE = "\\s+";
     public final String NEW_LINE = "\n";
 
-    public String getResult(String inputStr) {
-        String[] words = inputStr.split(REGEX_SPACE);
+    public String getResult(String sentence) {
+        String[] words = sentence.split(REGEX_SPACE);
 
         List<WordFrequency> wordFrequencyList = new ArrayList<>();
         for (String word : words) {
