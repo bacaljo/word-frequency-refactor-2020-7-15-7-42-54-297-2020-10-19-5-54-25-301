@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class WordFrequencyGame {
+
+    public final String NEW_LINE = "\n";
+
     public String getResult(String inputStr) {
         try {
 
@@ -27,11 +30,12 @@ public class WordFrequencyGame {
 
             wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
-            StringJoiner joiner = new StringJoiner("\n");
+            StringJoiner joiner = new StringJoiner(NEW_LINE);
             for (WordFrequency w : wordFrequencyList) {
                 String s = w.getWord() + " " + w.getWordCount();
                 joiner.add(s);
             }
+
             return joiner.toString();
         } catch (Exception e) {
 
