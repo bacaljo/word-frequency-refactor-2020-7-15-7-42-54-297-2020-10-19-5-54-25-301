@@ -1,10 +1,15 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringJoiner;
 
 import static java.lang.String.format;
+import static java.util.Arrays.asList;
+import static java.util.Collections.frequency;
 
 public class WordFrequencyGame {
 
@@ -26,23 +31,12 @@ public class WordFrequencyGame {
     }
 
     private List<WordFrequency> extractWordFrequencies(String sentence) {
-        String[] words = sentence.split(REGEX_SPACE);
-
         List<WordFrequency> wordFrequencyList = new ArrayList<>();
-        for (String word : words) {
-            WordFrequency wordFrequency = new WordFrequency(word, 1);
-            wordFrequencyList.add(wordFrequency);
-        }
+        List<String> wordList = asList(sentence.split(REGEX_SPACE));
+        Set<String> wordSet = new HashSet<>(wordList);
+        wordSet.forEach(word -> wordFrequencyList.add(new WordFrequency(word, frequency(wordList, word))));
 
-        Map<String, List<WordFrequency>> map = getListMap(wordFrequencyList);
-
-        List<WordFrequency> list = new ArrayList<>();
-        for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
-            WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
-            list.add(wordFrequency);
-        }
-
-        return list;
+        return wordFrequencyList;
     }
 
 
