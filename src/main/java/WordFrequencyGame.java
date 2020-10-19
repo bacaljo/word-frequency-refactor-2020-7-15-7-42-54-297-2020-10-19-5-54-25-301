@@ -22,7 +22,7 @@ public class WordFrequencyGame {
 
     private String buildWordFrequencyLines(List<WordFrequency> wordFrequencyList) {
         return wordFrequencyList.stream()
-                .map(wordFrequency -> format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount()))
+                .map(WordFrequency::getWordFrequencyLine)
                 .collect(joining(NEW_LINE));
     }
 
