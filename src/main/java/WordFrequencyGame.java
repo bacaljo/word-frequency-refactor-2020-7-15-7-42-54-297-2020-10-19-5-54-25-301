@@ -2,10 +2,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
+import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.frequency;
+import static java.util.stream.Collectors.joining;
 
 public class WordFrequencyGame {
 
@@ -21,8 +22,8 @@ public class WordFrequencyGame {
 
     private String buildWordFrequencyLines(List<WordFrequency> wordFrequencyList) {
         return wordFrequencyList.stream()
-                .map(wordFrequency -> String.format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount()))
-                .collect(Collectors.joining(NEW_LINE));
+                .map(wordFrequency -> format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount()))
+                .collect(joining(NEW_LINE));
     }
 
     private List<WordFrequency> extractWordFrequencies(String sentence) {
