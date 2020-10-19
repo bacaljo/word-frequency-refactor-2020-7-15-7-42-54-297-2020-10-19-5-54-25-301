@@ -12,6 +12,20 @@ public class WordFrequencyGame {
     public final String NEW_LINE = "\n";
 
     public String getResult(String sentence) {
+        List<WordFrequency> wordFrequencyList = extractWordFrequencies(sentence);
+
+        wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+
+        StringJoiner joiner = new StringJoiner(NEW_LINE);
+        for (WordFrequency wordFrequency : wordFrequencyList) {
+            String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
+            joiner.add(wordFrequencyLine);
+        }
+
+        return joiner.toString();
+    }
+
+    private List<WordFrequency> extractWordFrequencies(String sentence) {
         String[] words = sentence.split(REGEX_SPACE);
 
         List<WordFrequency> wordFrequencyList = new ArrayList<>();
@@ -27,17 +41,8 @@ public class WordFrequencyGame {
             WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
             list.add(wordFrequency);
         }
-        wordFrequencyList = list;
 
-        wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
-
-        StringJoiner joiner = new StringJoiner(NEW_LINE);
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
-            joiner.add(wordFrequencyLine);
-        }
-
-        return joiner.toString();
+        return list;
     }
 
 
