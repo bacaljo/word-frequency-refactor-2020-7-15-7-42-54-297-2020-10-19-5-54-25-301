@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
 
+import static java.lang.String.format;
+
 public class WordFrequencyGame {
 
     public final String NEW_LINE = "\n";
@@ -32,7 +34,7 @@ public class WordFrequencyGame {
 
             StringJoiner joiner = new StringJoiner(NEW_LINE);
             for (WordFrequency wordFrequency : wordFrequencyList) {
-                String wordFrequencyLine = wordFrequency.getWord() + " " + wordFrequency.getWordCount();
+                String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
                 joiner.add(wordFrequencyLine);
             }
 
