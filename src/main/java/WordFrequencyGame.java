@@ -8,6 +8,7 @@ import static java.util.Collections.frequency;
 import static java.util.Collections.reverseOrder;
 import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 public class WordFrequencyGame {
 
@@ -32,6 +33,6 @@ public class WordFrequencyGame {
 
         return wordSet.stream()
                 .map(word -> new WordFrequency(word, frequency(wordList, word)))
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 }
