@@ -1,9 +1,8 @@
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.Collections.frequency;
 import static java.util.stream.Collectors.joining;
@@ -27,11 +26,11 @@ public class WordFrequencyGame {
     }
 
     private List<WordFrequency> extractWordFrequencies(String sentence) {
-        List<WordFrequency> wordFrequencyList = new ArrayList<>();
         List<String> wordList = asList(sentence.split(REGEX_SPACE));
         Set<String> wordSet = new HashSet<>(wordList);
-        wordSet.forEach(word -> wordFrequencyList.add(new WordFrequency(word, frequency(wordList, word))));
 
-        return wordFrequencyList;
+        return wordSet.stream()
+                .map(word -> new WordFrequency(word, frequency(wordList, word)))
+                .collect(Collectors.toList());
     }
 }
