@@ -11,8 +11,8 @@ import static java.util.stream.Collectors.toList;
 
 public class WordFrequencyGame {
 
-    public String getResult(String sentence) {
-        List<WordFrequency> wordFrequencyList = extractWordFrequencies(sentence);
+    public String getResult(String phrase) {
+        List<WordFrequency> wordFrequencyList = extractWordFrequencies(phrase);
         wordFrequencyList.sort(reverseOrder(comparingInt(WordFrequency::getWordCount)));
 
         return buildWordFrequencyLines(wordFrequencyList);
