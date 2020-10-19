@@ -8,12 +8,13 @@ import static java.lang.String.format;
 
 public class WordFrequencyGame {
 
+    public final String REGEX_SPACE = "\\s+";
     public final String NEW_LINE = "\n";
 
     public String getResult(String inputStr) {
         try {
 
-            String[] words = inputStr.split("\\s+");
+            String[] words = inputStr.split(REGEX_SPACE);
 
             List<WordFrequency> wordFrequencyList = new ArrayList<>();
             for (String word : words) {
