@@ -18,9 +18,12 @@ public class WordFrequencyGame {
 
     public String getResult(String sentence) {
         List<WordFrequency> wordFrequencyList = extractWordFrequencies(sentence);
-
         wordFrequencyList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
+        return buildWordFrequencyLines(wordFrequencyList);
+    }
+
+    private String buildWordFrequencyLines(List<WordFrequency> wordFrequencyList) {
         StringJoiner joiner = new StringJoiner(NEW_LINE);
         for (WordFrequency wordFrequency : wordFrequencyList) {
             String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
