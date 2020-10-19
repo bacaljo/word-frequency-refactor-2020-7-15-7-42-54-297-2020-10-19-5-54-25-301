@@ -10,8 +10,6 @@ import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.joining;
 
 public class WordFrequencyGame {
-    private final String REGEX_SPACE = "\\s+";
-    private final String NEW_LINE = "\n";
 
     public String getResult(String sentence) {
         List<WordFrequency> wordFrequencyList = extractWordFrequencies(sentence);
@@ -21,13 +19,15 @@ public class WordFrequencyGame {
     }
 
     private String buildWordFrequencyLines(List<WordFrequency> wordFrequencyList) {
+        String newLine = "\n";
         return wordFrequencyList.stream()
                 .map(WordFrequency::getWordFrequencyLine)
-                .collect(joining(NEW_LINE));
+                .collect(joining(newLine));
     }
 
     private List<WordFrequency> extractWordFrequencies(String sentence) {
-        List<String> wordList = asList(sentence.split(REGEX_SPACE));
+        String regexSpace = "\\s+";
+        List<String> wordList = asList(sentence.split(regexSpace));
         Set<String> wordSet = new HashSet<>(wordList);
 
         return wordSet.stream()
