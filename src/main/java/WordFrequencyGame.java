@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 import static java.util.Arrays.asList;
@@ -24,13 +25,9 @@ public class WordFrequencyGame {
     }
 
     private String buildWordFrequencyLines(List<WordFrequency> wordFrequencyList) {
-        StringJoiner joiner = new StringJoiner(NEW_LINE);
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-            String wordFrequencyLine = format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount());
-            joiner.add(wordFrequencyLine);
-        }
-
-        return joiner.toString();
+        return wordFrequencyList.stream()
+                .map(wordFrequency -> String.format("%s %d", wordFrequency.getWord(), wordFrequency.getWordCount()))
+                .collect(Collectors.joining(NEW_LINE));
     }
 
     private List<WordFrequency> extractWordFrequencies(String sentence) {
